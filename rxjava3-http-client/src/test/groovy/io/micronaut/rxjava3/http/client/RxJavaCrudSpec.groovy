@@ -1,5 +1,6 @@
-package io.micronaut.rxjava3
+package io.micronaut.rxjava3.http.client
 
+import io.micronaut.http.HttpRequest
 import io.micronaut.http.HttpResponse
 import io.micronaut.http.HttpStatus
 import io.micronaut.http.annotation.*
@@ -22,6 +23,10 @@ class RxJavaCrudSpec extends Specification {
 
     @Inject
     BookClient client
+
+    @Inject
+    @Client("/")
+    Rx3HttpClient rx3HttpClient
 
     void "test it is possible to implement CRUD operations with RxJava"() {
 
@@ -54,6 +59,8 @@ class RxJavaCrudSpec extends Specification {
         book.title == "The Stand"
         book.id == 1
         client.flow().toList().blockingGet().size() == 1
+        rx3HttpClient.retrieve(HttpRequest.GET("/rxjava/books/" + book.id), Book).blockingFirst()
+            .title == "The Stand"
 
 
         when:'the full response is resolved'

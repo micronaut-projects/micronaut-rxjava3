@@ -19,7 +19,7 @@ import javax.inject.Singleton;
 @Singleton
 @Requires(classes = {Maybe.class, ReactiveClientResultTransformer.class})
 @Internal
-public class RxJava3ClientResultTransformer implements ReactiveClientResultTransformer {
+class RxJava3ClientResultTransformer implements ReactiveClientResultTransformer {
 
     @Override
     public Object transform(

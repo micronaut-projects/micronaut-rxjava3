@@ -2,3 +2,4 @@ Adds support for RxJava 3 to a Micronaut application. The following integrations
 
 * Converters for RxJava 3 types so that RxJava 3 types can be used in controllers and clients
 * Instrumentation for RxJava 3 types so that tracing works with RxJava 3 types
+* A version of the Http client that supports RxJava 3

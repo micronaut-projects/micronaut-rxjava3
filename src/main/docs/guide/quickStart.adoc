@@ -1,3 +1,14 @@
 Add the following dependency to your Micronaut application:
 
 dependency:io.micronaut.rxjava3:micronaut-rxjava3[scope="compile", version="{version}"]
+
+To use the RxJava 3 variation of the Micronaut HTTP client inject the api:rxjava3.http.client.Rx3HttpClient[] interface (or one the other variants). For example:
+
+[source,java]
+----
+import io.micronaut.rxjava3.http.client.*;
+
+@Inject Rx3HttpClient httpClient; // regular client
+@Inject Rx3SseClient sseClient; // server sent events
+@Inject Rx3StreamingHttpClient streamingClient; // streaming
+----
