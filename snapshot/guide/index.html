@@ -113,6 +113,9 @@
 <li>
 <p>Instrumentation for RxJava 3 types so that tracing works with RxJava 3 types</p>
 </li>
+<li>
+<p>A version of the Http client that supports RxJava 3</p>
+</li>
 </ul>
 </div>
 
@@ -165,6 +168,18 @@
 </div>
 </div>
 </p>
+</div>
+<div class="paragraph">
+<p>To use the RxJava 3 variation of the Micronaut HTTP client inject the <a href="../api/io/micronaut/rxjava3/http/client/Rx3HttpClient.html">Rx3HttpClient</a> interface (or one the other variants). For example:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-java hljs" data-lang="java">import io.micronaut.rxjava3.http.client.*;
+
+@Inject Rx3HttpClient httpClient; // regular client
+@Inject Rx3SseClient sseClient; // server sent events
+@Inject Rx3StreamingHttpClient streamingClient; // streaming</code></pre>
+</div>
 </div>
 
     </div>
