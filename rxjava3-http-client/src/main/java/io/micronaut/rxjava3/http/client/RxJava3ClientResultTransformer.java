@@ -1,6 +1,7 @@
 package io.micronaut.rxjava3.http.client;
 
 import io.micronaut.context.annotation.Requires;
+import io.micronaut.core.annotation.Indexed;
 import io.micronaut.core.annotation.Internal;
 import io.micronaut.http.HttpStatus;
 import io.micronaut.http.client.ReactiveClientResultTransformer;
@@ -19,6 +20,7 @@ import javax.inject.Singleton;
 @Singleton
 @Requires(classes = {Maybe.class, ReactiveClientResultTransformer.class})
 @Internal
+@Indexed(ReactiveClientResultTransformer.class)
 class RxJava3ClientResultTransformer implements ReactiveClientResultTransformer {
 
     @Override
