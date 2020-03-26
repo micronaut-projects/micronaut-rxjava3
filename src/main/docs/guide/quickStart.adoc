@@ -1,1 +1,3 @@
-TODO
+Add the following dependency to your Micronaut application:
+
+dependency:io.micronaut.rxjava3:micronaut-rxjava3[scope="compile", version="{version}"]
