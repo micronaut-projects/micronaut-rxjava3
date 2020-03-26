@@ -1,3 +1,3 @@
 rootProject.name = 'rxjaxa3'
 
-include 'rxjaxa3'
+include 'rxjava3'
