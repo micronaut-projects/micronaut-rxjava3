@@ -7,7 +7,7 @@ Integration between Micronaut and RxJava 3
 
 ## Documentation
 
-See the [Documentation](https://micronaut-projects.github.io/micronaut-rxjava3/latest/guide/) for more information. 
+See the [Documentation](https://micronaut-projects.github.io/micronaut-rxjava3/1.0.x/guide/) for more information. 
 
 See the [Snapshot Documentation](https://micronaut-projects.github.io/micronaut-rxjava3/snapshot/guide/) for the current development docs.
 
