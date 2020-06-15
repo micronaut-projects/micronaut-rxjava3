@@ -16,6 +16,7 @@
 package io.micronaut.rxjava3.instrument;
 
 import io.micronaut.core.annotation.Internal;
+import io.micronaut.scheduling.instrument.Instrumentation;
 import io.micronaut.scheduling.instrument.InvocationInstrumenter;
 import io.reactivex.rxjava3.core.CompletableObserver;
 import io.reactivex.rxjava3.disposables.Disposable;
@@ -45,43 +46,22 @@ final class RxInstrumentedCompletableObserver implements CompletableObserver, Rx
 
     @Override
     public void onSubscribe(Disposable d) {
-        if (instrumenter == null) {
+        try (Instrumentation ignored = instrumenter.newInstrumentation()) {
             source.onSubscribe(d);
-        } else {
-            try {
-                instrumenter.beforeInvocation();
-                source.onSubscribe(d);
-            } finally {
-                instrumenter.afterInvocation(false);
-            }
         }
     }
 
     @Override
     public void onError(Throwable t) {
-        if (instrumenter == null) {
+        try (Instrumentation ignored = instrumenter.newInstrumentation()) {
             source.onError(t);
-        } else {
-            try {
-                instrumenter.beforeInvocation();
-                source.onError(t);
-            } finally {
-                instrumenter.afterInvocation(false);
-            }
         }
     }
 
     @Override
     public void onComplete() {
-        if (instrumenter == null) {
+        try (Instrumentation ignored = instrumenter.newInstrumentation()) {
             source.onComplete();
-        } else {
-            try {
-                instrumenter.beforeInvocation();
-                source.onComplete();
-            } finally {
-                instrumenter.afterInvocation(false);
-            }
         }
     }
 

@@ -16,6 +16,7 @@
 package io.micronaut.rxjava3.instrument;
 
 import io.micronaut.core.annotation.Internal;
+import io.micronaut.scheduling.instrument.Instrumentation;
 import io.micronaut.scheduling.instrument.InvocationInstrumenter;
 import io.reactivex.rxjava3.core.Observer;
 import io.reactivex.rxjava3.disposables.Disposable;
@@ -46,59 +47,31 @@ final class RxInstrumentedObserver<T> implements Observer<T>, RxInstrumentedComp
 
     @Override
     public void onSubscribe(Disposable d) {
-        if (instrumenter == null) {
+        try (Instrumentation ignored = instrumenter.newInstrumentation()) {
             source.onSubscribe(d);
-        } else {
-            try {
-                instrumenter.beforeInvocation();
-                source.onSubscribe(d);
-            } finally {
-                instrumenter.afterInvocation(false);
-            }
         }
     }
 
     @Override
     public void onNext(T t) {
-        if (instrumenter == null) {
+        try (Instrumentation ignored = instrumenter.newInstrumentation()) {
             source.onNext(t);
-        } else {
-            try {
-                instrumenter.beforeInvocation();
-                source.onNext(t);
-            } finally {
-                instrumenter.afterInvocation(false);
-            }
         }
     }
 
     @SuppressWarnings("Duplicates")
     @Override
     public void onError(Throwable t) {
-        if (instrumenter == null) {
+        try (Instrumentation ignored = instrumenter.newInstrumentation()) {
             source.onError(t);
-        } else {
-            try {
-                instrumenter.beforeInvocation();
-                source.onError(t);
-            } finally {
-                instrumenter.afterInvocation(false);
-            }
         }
     }
 
     @SuppressWarnings("Duplicates")
     @Override
     public void onComplete() {
-        if (instrumenter == null) {
+        try (Instrumentation ignored = instrumenter.newInstrumentation()) {
             source.onComplete();
-        } else {
-            try {
-                instrumenter.beforeInvocation();
-                source.onComplete();
-            } finally {
-                instrumenter.afterInvocation(false);
-            }
         }
     }
 

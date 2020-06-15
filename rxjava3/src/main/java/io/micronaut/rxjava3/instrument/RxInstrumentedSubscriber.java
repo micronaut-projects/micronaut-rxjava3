@@ -16,6 +16,7 @@
 package io.micronaut.rxjava3.instrument;
 
 import io.micronaut.core.annotation.Internal;
+import io.micronaut.scheduling.instrument.Instrumentation;
 import io.micronaut.scheduling.instrument.InvocationInstrumenter;
 import org.reactivestreams.Subscriber;
 import org.reactivestreams.Subscription;
@@ -46,58 +47,30 @@ class RxInstrumentedSubscriber<T> implements Subscriber<T>, RxInstrumentedCompon
 
     @Override
     public final void onSubscribe(Subscription s) {
-        if (instrumenter == null) {
+        try (Instrumentation ignored = instrumenter.newInstrumentation()) {
             source.onSubscribe(s);
-        } else {
-            try {
-                instrumenter.beforeInvocation();
-                source.onSubscribe(s);
-            } finally {
-                instrumenter.afterInvocation(false);
-            }
         }
     }
 
     @Override
     public void onNext(T t) {
-        if (instrumenter == null) {
+        try (Instrumentation ignored = instrumenter.newInstrumentation()) {
             source.onNext(t);
-        } else {
-            try {
-                instrumenter.beforeInvocation();
-                source.onNext(t);
-            } finally {
-                instrumenter.afterInvocation(false);
-            }
         }
     }
 
     @SuppressWarnings("Duplicates")
     @Override
     public void onError(Throwable t) {
-        if (instrumenter == null) {
+        try (Instrumentation ignored = instrumenter.newInstrumentation()) {
             source.onError(t);
-        } else {
-            try {
-                instrumenter.beforeInvocation();
-                source.onError(t);
-            } finally {
-                instrumenter.afterInvocation(false);
-            }
         }
     }
 
     @Override
     public void onComplete() {
-        if (instrumenter == null) {
+        try (Instrumentation ignored = instrumenter.newInstrumentation()) {
             source.onComplete();
-        } else {
-            try {
-                instrumenter.beforeInvocation();
-                source.onComplete();
-            } finally {
-                instrumenter.afterInvocation(false);
-            }
         }
     }
 }

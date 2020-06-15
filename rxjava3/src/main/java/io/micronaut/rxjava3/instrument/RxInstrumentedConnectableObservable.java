@@ -16,6 +16,7 @@
 package io.micronaut.rxjava3.instrument;
 
 import io.micronaut.core.annotation.Internal;
+import io.micronaut.scheduling.instrument.Instrumentation;
 import io.micronaut.scheduling.instrument.InvocationInstrumenter;
 import io.reactivex.rxjava3.core.Observer;
 import io.reactivex.rxjava3.disposables.Disposable;
@@ -49,21 +50,15 @@ final class RxInstrumentedConnectableObservable<T> extends ConnectableObservable
 
     @Override
     protected void subscribeActual(Observer<? super T> o) {
-        try {
-            instrumenter.beforeInvocation();
+        try (Instrumentation ignored = instrumenter.newInstrumentation()) {
             source.subscribe(o);
-        } finally {
-            instrumenter.afterInvocation(false);
         }
     }
 
     @Override
     public void connect(Consumer<? super Disposable> connection) {
-        try {
-            instrumenter.beforeInvocation();
+        try (Instrumentation ignored = instrumenter.newInstrumentation()) {
             source.connect(connection);
-        } finally {
-            instrumenter.afterInvocation(false);
         }
     }
 
