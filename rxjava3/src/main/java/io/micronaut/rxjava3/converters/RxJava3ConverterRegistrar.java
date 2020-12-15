@@ -87,6 +87,19 @@ public class RxJava3ConverterRegistrar implements TypeConverterRegistrar {
         conversionService.addConverter(Completable.class, Observable.class, Completable::toObservable);
         conversionService.addConverter(Object.class, Completable.class, (obj) -> Completable.complete());
 
+        // Interop Completable
+        conversionService.addConverter(Completable.class, io.reactivex.Single.class, completable ->
+                RxJavaBridge.toV2Single(completable.toSingleDefault(new Object()))
+        );
+        conversionService.addConverter(Completable.class, io.reactivex.Maybe.class, completable ->
+                RxJavaBridge.toV2Maybe(completable.toMaybe())
+        );
+        conversionService.addConverter(Completable.class, io.reactivex.Observable.class, completable ->
+                RxJavaBridge.toV2Observable(completable.toObservable())
+        );
+        conversionService.addConverter(Completable.class, io.reactivex.Completable.class, RxJavaBridge::toV2Completable);
+        conversionService.addConverter(io.reactivex.Completable.class, Completable.class, RxJavaBridge::toV3Completable);
+
         // Maybe
         conversionService.addConverter(Maybe.class, Publisher.class, Maybe::toFlowable);
         conversionService.addConverter(Maybe.class, Single.class, Maybe::toSingle);
