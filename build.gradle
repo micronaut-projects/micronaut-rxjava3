@@ -9,9 +9,6 @@ buildscript {
 }
 
 subprojects { Project subproject ->
-    repositories {
-        jcenter()
-    }
     group "io.micronaut.rxjava3"
 
     apply plugin: "io.micronaut.build.internal.common"
