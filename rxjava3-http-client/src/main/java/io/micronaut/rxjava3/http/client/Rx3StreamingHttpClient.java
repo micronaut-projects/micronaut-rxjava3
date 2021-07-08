@@ -30,7 +30,7 @@ import java.util.Map;
  * @author graemerocher
  * @since 1.0.0
  */
-public interface Rx3StreamingHttpClient extends StreamingHttpClient {
+public interface Rx3StreamingHttpClient extends Rx3HttpClient, StreamingHttpClient {
 
     @Override
     <I> Flowable<ByteBuffer<?>> dataStream(HttpRequest<I> request);
