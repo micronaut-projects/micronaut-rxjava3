@@ -23,8 +23,8 @@ import io.micronaut.scheduling.instrument.InvocationInstrumenter;
 import io.micronaut.scheduling.instrument.ReactiveInvocationInstrumenterFactory;
 import io.reactivex.rxjava3.core.Flowable;
 
-import edu.umd.cs.findbugs.annotations.Nullable;
 import javax.inject.Singleton;
+import io.micronaut.core.annotation.Nullable;
 import java.util.ArrayList;
 import java.util.List;
 
