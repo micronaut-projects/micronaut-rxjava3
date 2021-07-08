@@ -23,8 +23,7 @@ import io.micronaut.core.convert.ConversionService;
 import io.micronaut.core.convert.TypeConverterRegistrar;
 import io.reactivex.rxjava3.core.*;
 import org.reactivestreams.Publisher;
-
-import javax.inject.Singleton;
+import jakarta.inject.Singleton;
 
 /**
  * Converters for RxJava 3. Copied from {@link io.micronaut.reactive.rxjava2.converters.RxJavaConverterRegistrar}.

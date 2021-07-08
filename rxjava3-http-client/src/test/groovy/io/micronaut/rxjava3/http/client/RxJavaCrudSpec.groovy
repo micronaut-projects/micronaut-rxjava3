@@ -11,7 +11,7 @@ import io.reactivex.rxjava3.core.Maybe
 import io.reactivex.rxjava3.core.Single
 import spock.lang.Specification
 
-import javax.inject.Inject
+import jakarta.inject.Inject
 import java.util.concurrent.atomic.AtomicLong
 
 /**
