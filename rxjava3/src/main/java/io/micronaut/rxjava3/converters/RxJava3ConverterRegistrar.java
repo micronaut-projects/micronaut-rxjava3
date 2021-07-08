@@ -97,5 +97,19 @@ public class RxJava3ConverterRegistrar implements TypeConverterRegistrar {
             }
         });
 
+        // Publisher
+        conversionService.addConverter(
+                Publisher.class, Flowable.class,
+                publisher -> {
+                    if (publisher instanceof Flowable) {
+                        return (Flowable) publisher;
+                    }
+                    return Flowable.fromPublisher(publisher);
+                }
+        );
+        conversionService.addConverter(Publisher.class, Single.class, Single::fromPublisher);
+        conversionService.addConverter(Publisher.class, Observable.class, Observable::fromPublisher);
+        conversionService.addConverter(Publisher.class, Maybe.class, publisher -> Flowable.fromPublisher(publisher).firstElement());
+        conversionService.addConverter(Publisher.class, Completable.class, Completable::fromPublisher);
     }
 }
