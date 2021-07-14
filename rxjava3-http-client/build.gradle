@@ -4,7 +4,5 @@ dependencies {
 
     api project(":rxjava3")
     api "io.micronaut:micronaut-http-client"
-    implementation "com.github.akarnokd:rxjava3-bridge:3.0.0"
-
     testImplementation("io.micronaut:micronaut-http-server-netty")
 }
