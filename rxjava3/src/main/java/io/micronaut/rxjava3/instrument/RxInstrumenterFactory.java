@@ -22,9 +22,8 @@ import io.micronaut.core.util.CollectionUtils;
 import io.micronaut.scheduling.instrument.InvocationInstrumenter;
 import io.micronaut.scheduling.instrument.ReactiveInvocationInstrumenterFactory;
 import io.reactivex.rxjava3.core.Flowable;
-
-import javax.inject.Singleton;
 import io.micronaut.core.annotation.Nullable;
+import jakarta.inject.Singleton;
 import java.util.ArrayList;
 import java.util.List;
 
