@@ -30,7 +30,7 @@ import io.micronaut.rxjava3.http.client.Rx3SseClient;
 /**
  * Factory interface for creating {@link io.micronaut.http.client.sse.SseClient}.
  * @author Sergio del Amo
- * @since 3.0.0
+ * @since 2.0.0
  */
 @Factory
 public class RxSseClientFactory {
