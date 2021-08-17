@@ -47,6 +47,8 @@
                                 
                                 <div class="toc-item" style="margin-left:0"><a href="#quickStart"><strong>2</strong><span>Quick Start</span></a></div>
                                 
+                                <div class="toc-item" style="margin-left:0"><a href="#repository"><strong>3</strong><span>Repository</span></a></div>
+                                
                             </div>
                         </div>
                     </li>
@@ -82,6 +84,8 @@
         
         <div class="toc-item" style="margin-left:0px" id="toc-item-quickStart"><a href="#quickStart"><strong>2</strong><span>Quick Start</span></a></div>
         
+        <div class="toc-item" style="margin-left:0px" id="toc-item-repository"><a href="#repository"><strong>3</strong><span>Repository</span></a></div>
+        
         </div>
     </div>
     
@@ -90,7 +94,7 @@
         <h1>Micronaut RxJava 3</h1>
         <p></p>
         <p>Integration between Micronaut and RxJava 3</p>
-        <p><strong>Version:</strong> <select style='max-width: 200px' onChange='window.document.location.href=this.options[this.selectedIndex].value;'><option value='https://micronaut-projects.github.io/micronaut-rxjava3/snapshot/guide/index.html'>SNAPSHOT</option><option selected='selected' value='https://micronaut-projects.github.io/micronaut-rxjava3/1.1.2/guide/index.html'>1.1.2</option><option value='https://micronaut-projects.github.io/micronaut-rxjava3/1.1.1/guide/index.html'>1.1.1</option><option value='https://micronaut-projects.github.io/micronaut-rxjava3/1.1.0/guide/index.html'>1.1.0</option><option value='https://micronaut-projects.github.io/micronaut-rxjava3/1.0.0/guide/index.html'>1.0.0</option><option value='https://micronaut-projects.github.io/micronaut-rxjava3/1.0.0.RC2/guide/index.html'>1.0.0.RC2</option><option value='https://micronaut-projects.github.io/micronaut-rxjava3/1.0.0.RC1/guide/index.html'>1.0.0.RC1</option></select></p>
+        <p><strong>Version:</strong> <select style='max-width: 200px' onChange='window.document.location.href=this.options[this.selectedIndex].value;'><option value='https://micronaut-projects.github.io/micronaut-rxjava3/snapshot/guide/index.html'>SNAPSHOT</option><option selected='selected' value='https://micronaut-projects.github.io/micronaut-rxjava3/2.0.0/guide/index.html'>2.0.0</option><option value='https://micronaut-projects.github.io/micronaut-rxjava3/2.0.0-M1/guide/index.html'>2.0.0-M1</option><option value='https://micronaut-projects.github.io/micronaut-rxjava3/1.1.2/guide/index.html'>1.1.2</option><option value='https://micronaut-projects.github.io/micronaut-rxjava3/1.1.1/guide/index.html'>1.1.1</option><option value='https://micronaut-projects.github.io/micronaut-rxjava3/1.1.0/guide/index.html'>1.1.0</option><option value='https://micronaut-projects.github.io/micronaut-rxjava3/1.0.0/guide/index.html'>1.0.0</option><option value='https://micronaut-projects.github.io/micronaut-rxjava3/1.0.0.RC2/guide/index.html'>1.0.0.RC2</option><option value='https://micronaut-projects.github.io/micronaut-rxjava3/1.0.0.RC1/guide/index.html'>1.0.0.RC1</option></select></p>
     </div>
     
 <h1 id="introduction"><a class="anchor" href="#introduction"></a>1 Introduction</h1>
@@ -128,15 +132,11 @@
 </div>
 
 
-<div class="sect3">
-<h4 id="_1_0_0">1.0.0</h4>
-<div class="ulist">
-<ul>
-<li>
-<p>First Release</p>
-</li>
-</ul>
+<div class="paragraph">
+<p>For this project, you can find a list of releases (with release notes) here:</p>
 </div>
+<div class="paragraph">
+<p><a href="https://github.com/micronaut-projects/micronaut-rxjava3/releases">https://github.com/micronaut-projects/micronaut-rxjava3/releases</a></p>
 </div>
 
 <h1 id="quickStart"><a class="anchor" href="#quickStart"></a>2 Quick Start</h1>
@@ -155,7 +155,7 @@
 <p>        <div class="listingblock multi-language-sample">
 <div class="title"></div>
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-kotlin hljs" data-lang="gradle">implementation(<span class="hljs-string">"io.micronaut.rxjava3:micronaut-rxjava3:1.1.2")</span></code></pre>
+<pre class="highlightjs highlight"><code class="language-kotlin hljs" data-lang="gradle">implementation(<span class="hljs-string">"io.micronaut.rxjava3:micronaut-rxjava3:2.0.0")</span></code></pre>
 </div>
 </div>
 <div class="listingblock multi-language-sample">
@@ -163,7 +163,28 @@
 <pre class="highlightjs highlight"><code class="language-xml hljs" data-lang="maven">&lt;dependency&gt;
     &lt;groupId&gt;io.micronaut.rxjava3&lt;/groupId&gt;
     &lt;artifactId&gt;micronaut-rxjava3&lt;/artifactId&gt;
-    &lt;version&gt;1.1.2&lt;/version&gt;
+    &lt;version&gt;2.0.0&lt;/version&gt;
+&lt;/dependency&gt;</code></pre>
+</div>
+</div>
+</p>
+</div>
+<div class="paragraph">
+<p>To use the HTTP client add the following dependency:</p>
+</div>
+<div class="paragraph">
+<p>        <div class="listingblock multi-language-sample">
+<div class="title"></div>
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-kotlin hljs" data-lang="gradle">implementation(<span class="hljs-string">"io.micronaut.rxjava3:micronaut-rxjava3-http-client:2.0.0")</span></code></pre>
+</div>
+</div>
+<div class="listingblock multi-language-sample">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-xml hljs" data-lang="maven">&lt;dependency&gt;
+    &lt;groupId&gt;io.micronaut.rxjava3&lt;/groupId&gt;
+    &lt;artifactId&gt;micronaut-rxjava3-http-client&lt;/artifactId&gt;
+    &lt;version&gt;2.0.0&lt;/version&gt;
 &lt;/dependency&gt;</code></pre>
 </div>
 </div>
@@ -180,6 +201,22 @@
 @Inject Rx3SseClient sseClient; // server sent events
 @Inject Rx3StreamingHttpClient streamingClient; // streaming</code></pre>
 </div>
+</div>
+
+<h1 id="repository"><a class="anchor" href="#repository"></a>3 Repository</h1>
+
+<div class='contribute-btn'>
+    <button type='button' class='btn btn-default' onclick='window.location.href="https://github.com/micronaut-projects/micronaut-rxjava3/edit/master/src/main/docs/guide/repository.adoc"'>
+        <i class='fa fa-pencil-square-o'></i> Improve this doc
+    </button>
+</div>
+
+
+<div class="paragraph">
+<p>You can find the source code of this project in this repository:</p>
+</div>
+<div class="paragraph">
+<p><a href="https://github.com/micronaut-projects/micronaut-rxjava3">https://github.com/micronaut-projects/micronaut-rxjava3</a></p>
 </div>
 
     </div>
