@@ -13,48 +13,33 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package io.micronaut.rxjava3.http.client;
+package io.micronaut.rxjava3.http.client.proxy;
 
 import io.micronaut.core.annotation.NonNull;
 import io.micronaut.core.annotation.Nullable;
-import io.micronaut.core.io.buffer.ByteBuffer;
-import io.micronaut.core.type.Argument;
 import io.micronaut.http.HttpRequest;
-import io.micronaut.http.HttpResponse;
+import io.micronaut.http.MutableHttpResponse;
 import io.micronaut.http.client.HttpClientConfiguration;
-import io.micronaut.http.client.StreamingHttpClient;
+import io.micronaut.http.client.ProxyHttpClient;
 import io.reactivex.rxjava3.core.Flowable;
 
 import java.net.URL;
-import java.util.Map;
 
 /**
- * RxJava 3 variation of the {@link StreamingHttpClient} interface.
+ * Extended version of {@link ProxyHttpClient} for RxJava 3.
  *
- * @author graemerocher
- * @since 1.0.0
+ * @author James Kleeh
+ * @since 2.1.0
  */
-public interface Rx3StreamingHttpClient extends Rx3HttpClient, StreamingHttpClient {
+public interface Rx3ProxyHttpClient extends ProxyHttpClient {
 
     @Override
-    <I> Flowable<ByteBuffer<?>> dataStream(@NonNull HttpRequest<I> request);
-
-    @Override
-    <I> Flowable<HttpResponse<ByteBuffer<?>>> exchangeStream(@NonNull HttpRequest<I> request);
-
-    @Override
-    <I> Flowable<Map<String, Object>> jsonStream(@NonNull HttpRequest<I> request);
-
-    @Override
-    <I, O> Flowable<O> jsonStream(@NonNull HttpRequest<I> request, @NonNull Argument<O> type);
-
-    @Override
-    <I, O> Flowable<O> jsonStream(@NonNull HttpRequest<I> request, @NonNull Class<O> type);
+    Flowable<MutableHttpResponse<?>> proxy(@NonNull HttpRequest<?> request);
 
     /**
-     * Create a new {@link Rx3StreamingHttpClient}.
+     * Create a new {@link Rx3ProxyHttpClient}.
      * Note that this method should only be used outside of the context of a Micronaut application.
-     * The returned {@link Rx3StreamingHttpClient} is not subject to dependency injection.
+     * The returned {@link Rx3ProxyHttpClient} is not subject to dependency injection.
      * The creator is responsible for closing the client to avoid leaking connections.
      * Within a Micronaut application use {@link jakarta.inject.Inject} to inject a client instead.
      *
@@ -62,12 +47,12 @@ public interface Rx3StreamingHttpClient extends Rx3HttpClient, StreamingHttpClie
      * @return The client
      * @since 2.1.0
      */
-    static Rx3StreamingHttpClient create(@Nullable URL url) {
-        return new BridgedRx3StreamingHttpClient(StreamingHttpClient.create(url));
+    static Rx3ProxyHttpClient create(@Nullable URL url) {
+        return new BridgedProxyRx3HttpClient(ProxyHttpClient.create(url));
     }
 
     /**
-     * Create a new {@link Rx3StreamingHttpClient} with the specified configuration. Note that this method should only be used
+     * Create a new {@link ProxyHttpClient} with the specified configuration. Note that this method should only be used
      * outside of the context of an application. Within Micronaut use {@link jakarta.inject.Inject} to inject a client instead
      *
      * @param url The base URL
@@ -75,7 +60,7 @@ public interface Rx3StreamingHttpClient extends Rx3HttpClient, StreamingHttpClie
      * @return The client
      * @since 2.1.0
      */
-    static Rx3StreamingHttpClient create(@Nullable URL url, @NonNull HttpClientConfiguration configuration) {
-        return new BridgedRx3StreamingHttpClient(StreamingHttpClient.create(url, configuration));
+    static Rx3ProxyHttpClient create(@Nullable URL url, @NonNull HttpClientConfiguration configuration) {
+        return new BridgedProxyRx3HttpClient(ProxyHttpClient.create(url, configuration));
     }
 }

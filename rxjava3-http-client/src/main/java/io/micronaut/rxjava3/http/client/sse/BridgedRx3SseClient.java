@@ -16,6 +16,7 @@
 package io.micronaut.rxjava3.http.client.sse;
 
 import io.micronaut.core.annotation.Internal;
+import io.micronaut.core.annotation.NonNull;
 import io.micronaut.core.io.buffer.ByteBuffer;
 import io.micronaut.core.type.Argument;
 import io.micronaut.http.HttpRequest;
@@ -23,6 +24,7 @@ import io.micronaut.http.client.sse.SseClient;
 import io.micronaut.http.sse.Event;
 import io.micronaut.rxjava3.http.client.Rx3SseClient;
 import io.reactivex.rxjava3.core.Flowable;
+import org.reactivestreams.Publisher;
 
 /**
  * RxJava 2 bridge for the Server side events HTTP client.
@@ -31,7 +33,7 @@ import io.reactivex.rxjava3.core.Flowable;
  * @since 3.0.0
  */
 @Internal
-class BridgedRx3SseClient implements Rx3SseClient, AutoCloseable  {
+public class BridgedRx3SseClient implements Rx3SseClient, AutoCloseable  {
 
     private final SseClient sseClient;
 
@@ -39,32 +41,37 @@ class BridgedRx3SseClient implements Rx3SseClient, AutoCloseable  {
      * Default constructor.
      * @param sseClient Server Sent Events HTTP Client
      */
-    BridgedRx3SseClient(SseClient sseClient) {
+    public BridgedRx3SseClient(SseClient sseClient) {
         this.sseClient = sseClient;
     }
 
     @Override
-    public <I> Flowable<Event<ByteBuffer<?>>> eventStream(HttpRequest<I> request) {
+    public <I> Flowable<Event<ByteBuffer<?>>> eventStream(@NonNull HttpRequest<I> request) {
         return Flowable.fromPublisher(sseClient.eventStream(request));
     }
 
     @Override
-    public <I, B> Flowable<Event<B>> eventStream(HttpRequest<I> request, Argument<B> eventType) {
+    public <I, B> Flowable<Event<B>> eventStream(@NonNull HttpRequest<I> request, @NonNull Argument<B> eventType) {
         return Flowable.fromPublisher(sseClient.eventStream(request, eventType));
     }
 
     @Override
-    public <I, B> Flowable<Event<B>> eventStream(HttpRequest<I> request, Class<B> eventType) {
+    public <I, B> Publisher<Event<B>> eventStream(@NonNull HttpRequest<I> request, @NonNull Argument<B> eventType, @NonNull Argument<?> errorType) {
+        return Flowable.fromPublisher(sseClient.eventStream(request, eventType, errorType));
+    }
+
+    @Override
+    public <I, B> Flowable<Event<B>> eventStream(@NonNull HttpRequest<I> request, @NonNull Class<B> eventType) {
         return Flowable.fromPublisher(sseClient.eventStream(request, eventType));
     }
 
     @Override
-    public <B> Flowable<Event<B>> eventStream(String uri, Class<B> eventType) {
+    public <B> Flowable<Event<B>> eventStream(@NonNull String uri, @NonNull Class<B> eventType) {
         return Flowable.fromPublisher(sseClient.eventStream(uri, eventType));
     }
 
     @Override
-    public <B> Flowable<Event<B>> eventStream(String uri, Argument<B> eventType) {
+    public <B> Flowable<Event<B>> eventStream(@NonNull String uri, @NonNull Argument<B> eventType) {
         return Flowable.fromPublisher(sseClient.eventStream(uri, eventType));
     }
 

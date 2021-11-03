@@ -15,12 +15,18 @@
  */
 package io.micronaut.rxjava3.http.client;
 
+import io.micronaut.core.annotation.NonNull;
+import io.micronaut.core.annotation.Nullable;
 import io.micronaut.core.io.buffer.ByteBuffer;
 import io.micronaut.core.type.Argument;
 import io.micronaut.http.HttpRequest;
+import io.micronaut.http.client.HttpClientConfiguration;
 import io.micronaut.http.client.sse.SseClient;
 import io.micronaut.http.sse.Event;
+import io.micronaut.rxjava3.http.client.sse.BridgedRx3SseClient;
 import io.reactivex.rxjava3.core.Flowable;
+
+import java.net.URL;
 
 /**
  * RxJava 3 variation of the {@link SseClient} interface.
@@ -29,18 +35,47 @@ import io.reactivex.rxjava3.core.Flowable;
  * @since 1.0.0
  */
 public interface Rx3SseClient extends SseClient {
-    @Override
-    <I> Flowable<Event<ByteBuffer<?>>> eventStream(HttpRequest<I> request);
 
     @Override
-    <I, B> Flowable<Event<B>> eventStream(HttpRequest<I> request, Argument<B> eventType);
+    <I> Flowable<Event<ByteBuffer<?>>> eventStream(@NonNull HttpRequest<I> request);
 
     @Override
-    <I, B> Flowable<Event<B>> eventStream(HttpRequest<I> request, Class<B> eventType);
+    <I, B> Flowable<Event<B>> eventStream(@NonNull HttpRequest<I> request, @NonNull Argument<B> eventType);
 
     @Override
-    <B> Flowable<Event<B>> eventStream(String uri, Class<B> eventType);
+    <I, B> Flowable<Event<B>> eventStream(@NonNull HttpRequest<I> request, @NonNull Class<B> eventType);
 
     @Override
-    <B> Flowable<Event<B>> eventStream(String uri, Argument<B> eventType);
+    <B> Flowable<Event<B>> eventStream(@NonNull String uri, @NonNull Class<B> eventType);
+
+    @Override
+    <B> Flowable<Event<B>> eventStream(@NonNull String uri, @NonNull Argument<B> eventType);
+
+    /**
+     * Create a new {@link Rx3SseClient}.
+     * Note that this method should only be used outside of the context of a Micronaut application.
+     * The returned {@link Rx3SseClient} is not subject to dependency injection.
+     * The creator is responsible for closing the client to avoid leaking connections.
+     * Within a Micronaut application use {@link jakarta.inject.Inject} to inject a client instead.
+     *
+     * @param url The base URL
+     * @return The client
+     * @since 2.1.0
+     */
+    static Rx3SseClient create(@Nullable URL url) {
+        return new BridgedRx3SseClient(SseClient.create(url));
+    }
+
+    /**
+     * Create a new {@link Rx3SseClient} with the specified configuration. Note that this method should only be used
+     * outside of the context of an application. Within Micronaut use {@link jakarta.inject.Inject} to inject a client instead
+     *
+     * @param url The base URL
+     * @param configuration the client configuration
+     * @return The client
+     * @since 2.1.0
+     */
+    static Rx3SseClient create(@Nullable URL url, @NonNull HttpClientConfiguration configuration) {
+        return new BridgedRx3SseClient(SseClient.create(url, configuration));
+    }
 }
