@@ -15,12 +15,18 @@
  */
 package io.micronaut.rxjava3.http.client;
 
+import io.micronaut.core.annotation.NonNull;
+import io.micronaut.core.annotation.Nullable;
 import io.micronaut.core.io.buffer.ByteBuffer;
 import io.micronaut.core.type.Argument;
 import io.micronaut.http.HttpRequest;
 import io.micronaut.http.HttpResponse;
 import io.micronaut.http.client.HttpClient;
+import io.micronaut.http.client.HttpClientConfiguration;
+import io.micronaut.http.client.StreamingHttpClient;
 import io.reactivex.rxjava3.core.*;
+
+import java.net.URL;
 
 /**
  * RxJava 3 variation of the {@link HttpClient} interface.
@@ -95,4 +101,32 @@ public interface Rx3HttpClient extends HttpClient {
         );
     }
 
+
+    /**
+     * Create a new {@link HttpClient}.
+     * Note that this method should only be used outside of the context of a Micronaut application.
+     * The returned {@link HttpClient} is not subject to dependency injection.
+     * The creator is responsible for closing the client to avoid leaking connections.
+     * Within a Micronaut application use {@link jakarta.inject.Inject} to inject a client instead.
+     *
+     * @param url The base URL
+     * @return The client
+     * @since 2.1.0
+     */
+    static Rx3HttpClient create(@Nullable URL url) {
+        return new BridgedRx3HttpClient(StreamingHttpClient.create(url));
+    }
+
+    /**
+     * Create a new {@link HttpClient} with the specified configuration. Note that this method should only be used
+     * outside of the context of an application. Within Micronaut use {@link jakarta.inject.Inject} to inject a client instead
+     *
+     * @param url The base URL
+     * @param configuration the client configuration
+     * @return The client
+     * @since 2.1.0
+     */
+    static Rx3HttpClient create(@Nullable URL url, @NonNull HttpClientConfiguration configuration) {
+        return new BridgedRx3HttpClient(StreamingHttpClient.create(url, configuration));
+    }
 }
