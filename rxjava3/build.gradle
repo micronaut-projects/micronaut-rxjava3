@@ -6,6 +6,6 @@ dependencies {
     api "io.micronaut:micronaut-runtime:$micronautVersion"
     api "io.reactivex.rxjava3:rxjava:$rxJava3Version"
     compileOnly "io.reactivex.rxjava2:rxjava"
-    implementation "com.github.akarnokd:rxjava3-bridge:3.0.0"
+    implementation "com.github.akarnokd:rxjava3-bridge:3.0.1"
 
 }
