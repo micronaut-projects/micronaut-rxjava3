@@ -1,9 +1,12 @@
 plugins {
      id "io.micronaut.build.internal.module"
 }
+
 dependencies {
-    annotationProcessor "io.micronaut:micronaut-graal:$micronautVersion"
+    annotationProcessor "io.micronaut:micronaut-graal"
+
     api project(":rxjava3")
     api "io.micronaut:micronaut-http-client"
+
     testImplementation("io.micronaut:micronaut-http-server-netty")
 }

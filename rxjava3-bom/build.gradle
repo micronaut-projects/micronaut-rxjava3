@@ -1,0 +1,9 @@
+plugins {
+    id "io.micronaut.build.internal.bom"
+}
+
+dependencies {
+    constraints {
+        api("io.reactivex.rxjava3:rxjava:$rxJava3Version")
+    }
+}
