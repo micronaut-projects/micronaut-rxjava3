@@ -108,4 +108,23 @@ class BridgedRx3HttpClient implements Rx3HttpClient {
     public boolean isRunning() {
         return httpClient.isRunning();
     }
+
+    @Override
+    public void close() {
+        httpClient.close();
+    }
+
+    @Override
+    @NonNull
+    public HttpClient start() {
+        httpClient.start();
+        return this;
+    }
+
+    @Override
+    @NonNull
+    public HttpClient stop() {
+        httpClient.stop();
+        return this;
+    }
 }
