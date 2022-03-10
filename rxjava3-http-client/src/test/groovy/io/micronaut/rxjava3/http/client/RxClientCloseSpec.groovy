@@ -4,9 +4,9 @@ import spock.lang.Specification
 import spock.util.concurrent.PollingConditions
 
 class RxClientCloseSpec extends Specification {
-    def "confirm RxHttpClient can be stopped"() {
+    void "confirm RxHttpClient can be stopped"() {
         given:
-        def client = Rx3HttpClient.create(new URL("http://localhost"))
+        Rx3HttpClient client = Rx3HttpClient.create(new URL("http://localhost"))
 
         expect:
         client.isRunning()
@@ -19,15 +19,16 @@ class RxClientCloseSpec extends Specification {
         }
     }
 
-    def "confirm RxHttpClient can be closed"() {
+    void "confirm RxHttpClient can be closed"() {
         given:
-        def client = Rx3HttpClient.create(new URL("http://localhost"))
+        Rx3HttpClient client = Rx3HttpClient.create(new URL("http://localhost"))
 
         expect:
         client.isRunning()
 
         when:
         client.close()
+        
         then:
         new PollingConditions().eventually {
             !client.isRunning()
