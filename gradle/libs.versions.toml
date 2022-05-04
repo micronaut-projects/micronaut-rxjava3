@@ -1,0 +1,21 @@
+[versions]
+rxjava3-bridge = "3.0.2"
+rxjava3 = "3.1.3"
+
+# Micronaut
+
+
+
+[libraries]
+# BOMs
+
+
+# Micronaut
+micronaut-graal = { module = "io.micronaut:micronaut-graal" }
+micronaut-http-client = { module = "io.micronaut:micronaut-http-client" }
+micronaut-http-server-netty = { module = "io.micronaut:micronaut-http-server-netty" }
+micronaut-runtime = { module = "io.micronaut:micronaut-runtime" }
+
+rxjava2 = { module = "io.reactivex.rxjava2:rxjava" }
+rxjava3-bridge = { module = "com.github.akarnokd:rxjava3-bridge", version.ref = "rxjava3-bridge" }
+rxjava3 = { module = "io.reactivex.rxjava3:rxjava", version.ref = "rxjava3" }

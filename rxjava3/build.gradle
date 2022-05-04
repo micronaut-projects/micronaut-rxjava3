@@ -3,12 +3,12 @@ plugins {
 }
 
 dependencies {
-    annotationProcessor "io.micronaut:micronaut-graal"
+    annotationProcessor(libs.micronaut.graal)
 
-    api "io.micronaut:micronaut-runtime"
-    api "io.reactivex.rxjava3:rxjava:$rxJava3Version"
+    api(libs.micronaut.runtime)
+    api(libs.rxjava3)
 
-    compileOnly "io.reactivex.rxjava2:rxjava"
+    compileOnly(libs.rxjava2)
 
-    implementation "com.github.akarnokd:rxjava3-bridge:3.0.2"
+    implementation(libs.rxjava3.bridge)
 }

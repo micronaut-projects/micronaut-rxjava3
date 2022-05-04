@@ -4,6 +4,6 @@ plugins {
 
 dependencies {
     constraints {
-        api("io.reactivex.rxjava3:rxjava:$rxJava3Version")
+        api(libs.rxjava3)
     }
 }
