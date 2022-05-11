@@ -6,9 +6,9 @@ dependencies {
     annotationProcessor(libs.micronaut.graal)
 
     api(libs.micronaut.runtime)
-    api(libs.rxjava3)
+    api(libs.managed.rxjava3)
 
     compileOnly(libs.rxjava2)
 
-    implementation(libs.rxjava3.bridge)
+    implementation(libs.managed.rxjava3.bridge)
 }
