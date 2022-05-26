@@ -3,10 +3,10 @@ plugins {
 }
 
 dependencies {
-    annotationProcessor(libs.micronaut.graal)
+    annotationProcessor(mn.micronaut.graal)
 
     api project(":rxjava3")
-    api(libs.micronaut.http.client)
+    api(mn.micronaut.http.client)
 
-    testImplementation(libs.micronaut.http.server.netty)
+    testImplementation(mn.micronaut.http.server.netty)
 }
