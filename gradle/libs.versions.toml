@@ -1,0 +1,10 @@
+[versions]
+managed-rxjava3 = "3.1.4"
+
+rxjava3-bridge = "3.0.2"
+
+[libraries]
+managed-rxjava3 = { module = "io.reactivex.rxjava3:rxjava", version.ref = "managed-rxjava3" }
+
+rxjava3-bridge = { module = "com.github.akarnokd:rxjava3-bridge", version.ref = "rxjava3-bridge" }
+rxjava2 = { module = "io.reactivex.rxjava2:rxjava" }
