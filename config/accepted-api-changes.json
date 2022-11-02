@@ -1,0 +1,37 @@
+[
+{
+    "type": "io.micronaut.rxjava3.converters.$RxJava3ConverterRegistrar$Definition$Reference",
+    "member": "Field $ANNOTATION_METADATA",
+    "reason": "In Micronaut Framework 4 is loaded via service loader"
+},
+{
+    "type": "io.micronaut.rxjava3.converters.$RxJava3ConverterRegistrar$Definition$Reference",
+    "member": "Constructor io.micronaut.rxjava3.converters.$RxJava3ConverterRegistrar$Definition$Reference()",
+    "reason": "In Micronaut Framework 4 is loaded via service loader"
+},
+{
+    "type": "io.micronaut.rxjava3.converters.$RxJava3ConverterRegistrar$Definition$Reference",
+    "member": "Implemented interface io.micronaut.core.annotation.AnnotationSource",
+    "reason": "In Micronaut Framework 4 is loaded via service loader"
+},
+{
+    "type": "io.micronaut.rxjava3.converters.$RxJava3ConverterRegistrar$Definition$Reference",
+    "member": "Implemented interface io.micronaut.inject.BeanContextConditional",
+    "reason": "In Micronaut Framework 4 is loaded via service loader"
+},
+{
+    "type": "io.micronaut.rxjava3.converters.$RxJava3ConverterRegistrar$Definition$Reference",
+    "member": "Implemented interface io.micronaut.core.annotation.AnnotationMetadataProvider",
+    "reason": "In Micronaut Framework 4 is loaded via service loader"
+},
+{
+    "type": "io.micronaut.rxjava3.converters.$RxJava3ConverterRegistrar$Definition$Reference",
+    "member": "Implemented interface io.micronaut.inject.BeanType",
+    "reason": "In Micronaut Framework 4 is loaded via service loader"
+},
+{
+    "type": "io.micronaut.rxjava3.converters.$RxJava3ConverterRegistrar$Definition$Reference",
+    "member": "Implemented interface io.micronaut.inject.BeanDefinitionReference",
+    "reason": "In Micronaut Framework 4 is loaded via service loader"
+}
+]

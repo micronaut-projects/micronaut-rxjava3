@@ -15,14 +15,11 @@
  */
 package io.micronaut.rxjava3.converters;
 
-import io.micronaut.context.annotation.BootstrapContextCompatible;
-import io.micronaut.context.annotation.Requires;
 import io.micronaut.core.annotation.TypeHint;
 import io.micronaut.core.convert.MutableConversionService;
 import io.micronaut.core.convert.TypeConverterRegistrar;
 import io.reactivex.rxjava3.core.*;
 import org.reactivestreams.Publisher;
-import jakarta.inject.Singleton;
 
 /**
  * Converters for RxJava 3.
@@ -30,9 +27,6 @@ import jakarta.inject.Singleton;
  * @author graemerocher
  * @since 1.0
  */
-@Singleton
-@Requires(classes = Flowable.class)
-@BootstrapContextCompatible
 @TypeHint({
         Flowable.class,
         Maybe.class,
