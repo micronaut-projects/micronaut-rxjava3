@@ -9,4 +9,5 @@ dependencies {
     api(mn.micronaut.http.client)
 
     testImplementation(mn.micronaut.http.server.netty)
+    testRuntimeOnly mn.micronaut.jackson.databind
 }

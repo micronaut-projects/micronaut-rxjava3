@@ -18,7 +18,7 @@ package io.micronaut.rxjava3.converters;
 import hu.akarnokd.rxjava3.bridge.RxJavaBridge;
 import io.micronaut.context.annotation.BootstrapContextCompatible;
 import io.micronaut.context.annotation.Requires;
-import io.micronaut.core.convert.ConversionService;
+import io.micronaut.core.convert.MutableConversionService;
 import io.micronaut.core.convert.TypeConverterRegistrar;
 import io.reactivex.rxjava3.core.Flowable;
 import io.reactivex.rxjava3.core.Maybe;
@@ -42,9 +42,8 @@ import jakarta.inject.Singleton;
 @BootstrapContextCompatible
 public class RxJava2ToRxJava3ConveterRegistrar implements TypeConverterRegistrar {
 
-    @SuppressWarnings("unchecked")
     @Override
-    public void register(ConversionService<?> conversionService) {
+    public void register(MutableConversionService conversionService) {
 
         // Interop Maybe
         conversionService.addConverter(Maybe.class, io.reactivex.Maybe.class, RxJavaBridge::toV2Maybe);
