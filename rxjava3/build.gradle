@@ -8,7 +8,7 @@ dependencies {
     api(mn.micronaut.runtime)
     api(libs.managed.rxjava3)
 
-    compileOnly(libs.rxjava2)
+    compileOnly(mnRxjava2.micronaut.rxjava2)
 
     implementation(libs.rxjava3.bridge)
 }
