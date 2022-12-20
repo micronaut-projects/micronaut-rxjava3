@@ -36,7 +36,6 @@ import org.reactivestreams.Publisher;
 })
 public class RxJava3ConverterRegistrar implements TypeConverterRegistrar {
 
-
     @Override
     public void register(MutableConversionService conversionService) {
         // Completable
