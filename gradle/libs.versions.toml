@@ -1,5 +1,5 @@
 [versions]
-managed-rxjava3 = "3.1.5"
+managed-rxjava3 = "3.1.6"
 
 micronaut-rxjava2 = "2.0.0-SNAPSHOT"
 
