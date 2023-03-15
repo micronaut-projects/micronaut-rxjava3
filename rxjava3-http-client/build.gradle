@@ -5,7 +5,7 @@ plugins {
 dependencies {
     annotationProcessor(mn.micronaut.graal)
 
-    api project(":rxjava3")
+    api projects.micronautRxjava3
     api(mn.micronaut.http.client)
 
     testImplementation(mn.micronaut.http.server.netty)
