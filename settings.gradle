@@ -18,7 +18,6 @@ include 'rxjava3-http-client'
 enableFeaturePreview("TYPESAFE_PROJECT_ACCESSORS")
 
 micronautBuild {
-    addSnapshotRepository()
     useStandardizedProjectNames = true
     importMicronautCatalog()
     importMicronautCatalog("micronaut-rxjava2")
