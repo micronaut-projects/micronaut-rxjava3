@@ -19,29 +19,11 @@ package io.micronaut.rxjava3.instrument;
 import io.micronaut.context.annotation.Context;
 import io.micronaut.context.annotation.Requires;
 import io.micronaut.core.annotation.Internal;
-import io.micronaut.core.annotation.TypeHint;
 import io.micronaut.core.propagation.PropagatedContext;
-import io.reactivex.rxjava3.core.Completable;
-import io.reactivex.rxjava3.core.CompletableObserver;
-import io.reactivex.rxjava3.core.Flowable;
-import io.reactivex.rxjava3.core.Maybe;
-import io.reactivex.rxjava3.core.MaybeObserver;
-import io.reactivex.rxjava3.core.Observable;
-import io.reactivex.rxjava3.core.Observer;
-import io.reactivex.rxjava3.core.Single;
-import io.reactivex.rxjava3.core.SingleObserver;
-import io.reactivex.rxjava3.flowables.ConnectableFlowable;
-import io.reactivex.rxjava3.functions.BiFunction;
 import io.reactivex.rxjava3.functions.Function;
-import io.reactivex.rxjava3.observables.ConnectableObservable;
-import io.reactivex.rxjava3.parallel.ParallelFlowable;
 import io.reactivex.rxjava3.plugins.RxJavaPlugins;
-import org.reactivestreams.Subscriber;
-
 import jakarta.annotation.PostConstruct;
 import jakarta.annotation.PreDestroy;
-import jakarta.inject.Inject;
-import jakarta.inject.Singleton;
 
 /**
  * Provides a single point of entry for all instrumentations for RxJava 2.x.
