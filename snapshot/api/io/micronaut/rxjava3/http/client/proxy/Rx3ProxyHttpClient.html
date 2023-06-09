@@ -100,18 +100,18 @@ extends io.micronaut.http.client.ProxyHttpClient</span></div>
 <div class="table-header col-second">Method</div>
 <div class="table-header col-last">Description</div>
 <div class="col-first even-row-color method-summary-table method-summary-table-tab1"><code>static <a href="Rx3ProxyHttpClient.html" title="interface in io.micronaut.rxjava3.http.client.proxy">Rx3ProxyHttpClient</a></code></div>
-<div class="col-second even-row-color method-summary-table method-summary-table-tab1"><code><a href="#create(java.net.URL)" class="member-name-link">create</a><wbr>(<a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/net/URL.html" title="class or interface in java.net" class="external-link">URL</a>&nbsp;url)</code></div>
+<div class="col-second even-row-color method-summary-table method-summary-table-tab1"><code><a href="#create(java.net.URL)" class="member-name-link">create</a><wbr>(@Nullable <a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/net/URL.html" title="class or interface in java.net" class="external-link">URL</a>&nbsp;url)</code></div>
 <div class="col-last even-row-color method-summary-table method-summary-table-tab1">
 <div class="block">Create a new <a href="Rx3ProxyHttpClient.html" title="interface in io.micronaut.rxjava3.http.client.proxy"><code>Rx3ProxyHttpClient</code></a>.</div>
 </div>
 <div class="col-first odd-row-color method-summary-table method-summary-table-tab1"><code>static <a href="Rx3ProxyHttpClient.html" title="interface in io.micronaut.rxjava3.http.client.proxy">Rx3ProxyHttpClient</a></code></div>
-<div class="col-second odd-row-color method-summary-table method-summary-table-tab1"><code><a href="#create(java.net.URL,io.micronaut.http.client.HttpClientConfiguration)" class="member-name-link">create</a><wbr>(<a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/net/URL.html" title="class or interface in java.net" class="external-link">URL</a>&nbsp;url,
- io.micronaut.http.client.HttpClientConfiguration&nbsp;configuration)</code></div>
+<div class="col-second odd-row-color method-summary-table method-summary-table-tab1"><code><a href="#create(java.net.URL,io.micronaut.http.client.HttpClientConfiguration)" class="member-name-link">create</a><wbr>(@Nullable <a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/net/URL.html" title="class or interface in java.net" class="external-link">URL</a>&nbsp;url,
+ @NonNull io.micronaut.http.client.HttpClientConfiguration&nbsp;configuration)</code></div>
 <div class="col-last odd-row-color method-summary-table method-summary-table-tab1">
 <div class="block">Create a new <code>ProxyHttpClient</code> with the specified configuration.</div>
 </div>
 <div class="col-first even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab3"><code>io.reactivex.rxjava3.core.Flowable&lt;io.micronaut.http.MutableHttpResponse&lt;?&gt;&gt;</code></div>
-<div class="col-second even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab3"><code><a href="#proxy(io.micronaut.http.HttpRequest)" class="member-name-link">proxy</a><wbr>(io.micronaut.http.HttpRequest&lt;?&gt;&nbsp;request)</code></div>
+<div class="col-second even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab3"><code><a href="#proxy(io.micronaut.http.HttpRequest)" class="member-name-link">proxy</a><wbr>(@NonNull io.micronaut.http.HttpRequest&lt;?&gt;&nbsp;request)</code></div>
 <div class="col-last even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab3">&nbsp;</div>
 </div>
 </div>
@@ -134,7 +134,7 @@ extends io.micronaut.http.client.ProxyHttpClient</span></div>
 <section class="detail" id="proxy(io.micronaut.http.HttpRequest)">
 <h3>proxy</h3>
 <div class="member-signature"><span class="return-type">io.reactivex.rxjava3.core.Flowable&lt;io.micronaut.http.MutableHttpResponse&lt;?&gt;&gt;</span>&nbsp;<span class="element-name">proxy</span><wbr><span class="parameters">(@NonNull
- io.micronaut.http.HttpRequest&lt;?&gt;&nbsp;request)</span></div>
+ @NonNull io.micronaut.http.HttpRequest&lt;?&gt;&nbsp;request)</span></div>
 <dl class="notes">
 <dt>Specified by:</dt>
 <dd><code>proxy</code>&nbsp;in interface&nbsp;<code>io.micronaut.http.client.ProxyHttpClient</code></dd>
@@ -145,7 +145,7 @@ extends io.micronaut.http.client.ProxyHttpClient</span></div>
 <section class="detail" id="create(java.net.URL)">
 <h3>create</h3>
 <div class="member-signature"><span class="modifiers">static</span>&nbsp;<span class="return-type"><a href="Rx3ProxyHttpClient.html" title="interface in io.micronaut.rxjava3.http.client.proxy">Rx3ProxyHttpClient</a></span>&nbsp;<span class="element-name">create</span><wbr><span class="parameters">(@Nullable
- <a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/net/URL.html" title="class or interface in java.net" class="external-link">URL</a>&nbsp;url)</span></div>
+ @Nullable <a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/net/URL.html" title="class or interface in java.net" class="external-link">URL</a>&nbsp;url)</span></div>
 <div class="block">Create a new <a href="Rx3ProxyHttpClient.html" title="interface in io.micronaut.rxjava3.http.client.proxy"><code>Rx3ProxyHttpClient</code></a>.
  Note that this method should only be used outside of the context of a Micronaut application.
  The returned <a href="Rx3ProxyHttpClient.html" title="interface in io.micronaut.rxjava3.http.client.proxy"><code>Rx3ProxyHttpClient</code></a> is not subject to dependency injection.
@@ -165,9 +165,9 @@ extends io.micronaut.http.client.ProxyHttpClient</span></div>
 <section class="detail" id="create(java.net.URL,io.micronaut.http.client.HttpClientConfiguration)">
 <h3>create</h3>
 <div class="member-signature"><span class="modifiers">static</span>&nbsp;<span class="return-type"><a href="Rx3ProxyHttpClient.html" title="interface in io.micronaut.rxjava3.http.client.proxy">Rx3ProxyHttpClient</a></span>&nbsp;<span class="element-name">create</span><wbr><span class="parameters">(@Nullable
- <a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/net/URL.html" title="class or interface in java.net" class="external-link">URL</a>&nbsp;url,
+ @Nullable <a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/net/URL.html" title="class or interface in java.net" class="external-link">URL</a>&nbsp;url,
  @NonNull
- io.micronaut.http.client.HttpClientConfiguration&nbsp;configuration)</span></div>
+ @NonNull io.micronaut.http.client.HttpClientConfiguration&nbsp;configuration)</span></div>
 <div class="block">Create a new <code>ProxyHttpClient</code> with the specified configuration. Note that this method should only be used
  outside of the context of an application. Within Micronaut use <code>Inject</code> to inject a client instead</div>
 <dl class="notes">
