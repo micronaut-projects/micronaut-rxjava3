@@ -5,8 +5,8 @@ micronaut-rxjava2 = "2.2.0"
 
 micronaut-docs = "2.0.0"
 micronaut = "4.2.3"
-groovy = "4.0.13"
 micronaut-test = "4.1.1"
+groovy = "4.0.17"
 spock = "2.3-groovy-4.0"
 
 rxjava3-bridge = "3.0.2"
