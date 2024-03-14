@@ -15,11 +15,15 @@
  */
 package io.micronaut.rxjava3.converters;
 
+import io.micronaut.core.annotation.NonNull;
 import io.micronaut.core.annotation.TypeHint;
 import io.micronaut.core.convert.MutableConversionService;
 import io.micronaut.core.convert.TypeConverterRegistrar;
+import io.micronaut.core.propagation.PropagatedContext;
 import io.reactivex.rxjava3.core.*;
 import org.reactivestreams.Publisher;
+import org.reactivestreams.Subscriber;
+import org.reactivestreams.Subscription;
 
 /**
  * Converters for RxJava 3.
@@ -96,12 +100,78 @@ public class RxJava3ConverterRegistrar implements TypeConverterRegistrar {
                     if (publisher instanceof Flowable) {
                         return (Flowable) publisher;
                     }
-                    return Flowable.fromPublisher(publisher);
+                    return ContextPropagatingPublisher.asFlowable(publisher);
                 }
         );
-        conversionService.addConverter(Publisher.class, Single.class, Single::fromPublisher);
-        conversionService.addConverter(Publisher.class, Observable.class, Observable::fromPublisher);
-        conversionService.addConverter(Publisher.class, Maybe.class, publisher -> Flowable.fromPublisher(publisher).firstElement());
-        conversionService.addConverter(Publisher.class, Completable.class, Completable::fromPublisher);
+        conversionService.addConverter(Publisher.class, Single.class, ContextPropagatingPublisher::asSingle);
+        conversionService.addConverter(Publisher.class, Observable.class, ContextPropagatingPublisher::asObservable);
+        conversionService.addConverter(Publisher.class, Maybe.class, ContextPropagatingPublisher::asMaybe);
+        conversionService.addConverter(Publisher.class, Completable.class, ContextPropagatingPublisher::asCompletable);
+    }
+
+    private static class ContextPropagatingPublisher<T> implements Publisher<T> {
+
+        private final PropagatedContext context;
+        private final Publisher<? extends T> actual;
+
+        private ContextPropagatingPublisher(Publisher<? extends T> actual) {
+            this.context = PropagatedContext.find().orElse(null);
+            this.actual = actual;
+        }
+
+        public static <T> Flowable<T> asFlowable(Publisher<? extends T> actual) {
+            return Flowable.fromPublisher(new ContextPropagatingPublisher<>(actual));
+        }
+
+        public static <T> Single<T> asSingle(Publisher<? extends T> actual) {
+            return Single.fromPublisher(new ContextPropagatingPublisher<>(actual));
+        }
+
+        public static <T> Observable<T> asObservable(Publisher<? extends T> actual) {
+            return Observable.fromPublisher(new ContextPropagatingPublisher<>(actual));
+        }
+
+        public static <T> Maybe<T> asMaybe(Publisher<? extends T> actual) {
+            return Maybe.fromPublisher(new ContextPropagatingPublisher<>(actual));
+        }
+
+        public static <T> Completable asCompletable(Publisher<? extends T> actual) {
+            return Completable.fromPublisher(new ContextPropagatingPublisher<>(actual));
+        }
+
+        @Override
+        public void subscribe(Subscriber<? super T> subscriber) {
+            if (context == null) {
+                actual.subscribe(subscriber);
+            } else {
+                executeInContext(context, () -> actual.subscribe(new Subscriber<T>() {
+                    @Override
+                    public void onSubscribe(Subscription subscription) {
+                        executeInContext(context, () -> subscriber.onSubscribe(subscription));
+                    }
+
+                    @Override
+                    public void onNext(T t) {
+                        executeInContext(context, () -> subscriber.onNext(t));
+                    }
+
+                    @Override
+                    public void onError(Throwable throwable) {
+                        executeInContext(context, () -> subscriber.onError(throwable));
+                    }
+
+                    @Override
+                    public void onComplete() {
+                        executeInContext(context, subscriber::onComplete);
+                    }
+                }));
+            }
+        }
+
+        private void executeInContext(@NonNull PropagatedContext context, @NonNull Runnable runnable) {
+            try (PropagatedContext.Scope ignore = context.propagate()) {
+                runnable.run();
+            }
+         }
     }
 }
