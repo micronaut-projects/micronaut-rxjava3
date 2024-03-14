@@ -26,7 +26,7 @@ import jakarta.annotation.PostConstruct;
 import jakarta.annotation.PreDestroy;
 
 /**
- * Provides a single point of entry for all instrumentations for RxJava 2.x.
+ * Provides a single point of entry for all instrumentation for RxJava 3.x.
  *
  * @author Graeme Rocher
  * @since 1.0
