@@ -1,12 +1,11 @@
 [versions]
 managed-rxjava3 = "3.1.9"
 
-micronaut-rxjava2 = "2.4.0"
-
+micronaut-rxjava2 = "2.5.0"
 micronaut-docs = "2.0.0"
-micronaut = "4.6.6"
+micronaut = "4.7.1"
 micronaut-test = "4.5.0"
-groovy = "4.0.17"
+groovy = "4.0.23"
 spock = "2.3-groovy-4.0"
 
 rxjava3-bridge = "3.0.2"
