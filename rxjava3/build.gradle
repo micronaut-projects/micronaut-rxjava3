@@ -4,10 +4,5 @@ plugins {
 
 dependencies {
     annotationProcessor(mn.micronaut.graal)
-
     api(libs.managed.rxjava3)
-
-    compileOnly(mnRxjava2.micronaut.rxjava2)
-
-    implementation(libs.rxjava3.bridge)
 }
