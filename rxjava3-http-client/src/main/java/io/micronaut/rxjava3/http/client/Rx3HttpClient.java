@@ -23,7 +23,7 @@ import io.micronaut.http.HttpRequest;
 import io.micronaut.http.HttpResponse;
 import io.micronaut.http.client.HttpClient;
 import io.micronaut.http.client.HttpClientConfiguration;
-import io.reactivex.rxjava3.core.*;
+import io.reactivex.rxjava3.core.Flowable;
 
 import java.net.URL;
 

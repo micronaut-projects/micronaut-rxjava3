@@ -20,7 +20,12 @@ import io.micronaut.core.annotation.TypeHint;
 import io.micronaut.core.convert.MutableConversionService;
 import io.micronaut.core.convert.TypeConverterRegistrar;
 import io.micronaut.core.propagation.PropagatedContext;
-import io.reactivex.rxjava3.core.*;
+import io.reactivex.rxjava3.core.BackpressureStrategy;
+import io.reactivex.rxjava3.core.Completable;
+import io.reactivex.rxjava3.core.Flowable;
+import io.reactivex.rxjava3.core.Maybe;
+import io.reactivex.rxjava3.core.Observable;
+import io.reactivex.rxjava3.core.Single;
 import org.reactivestreams.Publisher;
 import org.reactivestreams.Subscriber;
 import org.reactivestreams.Subscription;
@@ -109,7 +114,7 @@ public class RxJava3ConverterRegistrar implements TypeConverterRegistrar {
         conversionService.addConverter(Publisher.class, Completable.class, ContextPropagatingPublisher::asCompletable);
     }
 
-    private static class ContextPropagatingPublisher<T> implements Publisher<T> {
+    private static final class ContextPropagatingPublisher<T> implements Publisher<T> {
 
         private final PropagatedContext context;
         private final Publisher<? extends T> actual;
