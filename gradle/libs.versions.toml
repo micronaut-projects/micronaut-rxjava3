@@ -1,6 +1,6 @@
 [versions]
 managed-rxjava3 = "3.1.12"
-micronaut = "5.1.6"
+micronaut = "5.1.7"
 
 [libraries]
 # Core
