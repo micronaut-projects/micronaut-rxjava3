@@ -1,0 +1,7 @@
+plugins {
+    id "io.micronaut.build.internal.rxjava3-base"
+}
+
+tasks.named("test") {
+    useJUnitPlatform()
+}
