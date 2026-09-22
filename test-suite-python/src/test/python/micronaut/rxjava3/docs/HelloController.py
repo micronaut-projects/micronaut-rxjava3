@@ -2,14 +2,9 @@ from micronaut.context.annotation import Requires
 from micronaut.http import MediaType
 from micronaut.http.annotation import Controller, Get
 from micronaut.http.sse import Event
-from org.reactivestreams import Publisher
+from io.reactivex.rxjava3.core import Flowable
 
 from .Message import Message
-
-try:
-    from io.reactivex.rxjava3.core import Flowable
-except ImportError:  # TODO(python): packages under `io.` other than `io.micronaut` cannot be imported at runtime
-    from reactivex.rxjava3.core import Flowable
 
 
 @Requires(property="spec.name", value="Rx3HttpClientTest")
@@ -21,9 +16,9 @@ class HelloController:
         return "Hello World"
 
     @Get(value="/stream", produces=MediaType.APPLICATION_JSON_STREAM)
-    def stream(self) -> Publisher[Message]:
+    def stream(self) -> Flowable[Message]:
         return Flowable.just(Message("Hello"), Message("World"))
 
     @Get(value="/events", produces=MediaType.TEXT_EVENT_STREAM)
-    def events(self) -> Publisher[Event[str]]:
+    def events(self) -> Flowable[Event[str]]:
         return Flowable.just(Event.of("Hello"), Event.of("World"))
