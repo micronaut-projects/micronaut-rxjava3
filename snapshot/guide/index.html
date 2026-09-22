@@ -169,6 +169,15 @@
 &lt;/dependency&gt;</code></pre>
 </div>
 </div>
+<div class="listingblock multi-language-sample">
+<div class="title"></div>
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-toml hljs" data-lang="pyronaut">[tool.pyronaut.dependencies]
+runtime = [
+    <span class="hljs-string">"io.micronaut.rxjava3:micronaut-rxjava3"</span>,
+]</code></pre>
+</div>
+</div>
 </p>
 </div>
 <div class="paragraph">
@@ -189,18 +198,117 @@
 &lt;/dependency&gt;</code></pre>
 </div>
 </div>
+<div class="listingblock multi-language-sample">
+<div class="title"></div>
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-toml hljs" data-lang="pyronaut">[tool.pyronaut.dependencies]
+runtime = [
+    <span class="hljs-string">"io.micronaut.rxjava3:micronaut-rxjava3-http-client"</span>,
+]</code></pre>
+</div>
+</div>
 </p>
 </div>
 <div class="paragraph">
 <p>To use the RxJava 3 variation of the Micronaut HTTP client inject the <a href="../api/io/micronaut/rxjava3/http/client/Rx3HttpClient.html">Rx3HttpClient</a> interface (or one of the other variants). For example:</p>
 </div>
-<div class="listingblock">
+<div class="listingblock multi-language-sample">
+<div class="title">Injecting the RxJava 3 clients</div>
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-java hljs" data-lang="java">import io.micronaut.rxjava3.http.client.*;
+<pre class="highlightjs highlight"><code class="language-java hljs" data-lang="java">import io.micronaut.http.client.annotation.Client;
+import io.micronaut.rxjava3.http.client.Rx3HttpClient;
+import io.micronaut.rxjava3.http.client.Rx3StreamingHttpClient;
+import io.micronaut.rxjava3.http.client.Rx3SseClient;
+import jakarta.inject.Inject;
 
-@Inject Rx3HttpClient httpClient; // regular client
-@Inject Rx3SseClient sseClient; // server sent events
-@Inject Rx3StreamingHttpClient streamingClient; // streaming</code></pre>
+@Inject @Client("/") Rx3HttpClient httpClient; // <b class="conum">(1)</b>
+@Inject @Client("/") Rx3SseClient sseClient; // <b class="conum">(2)</b>
+@Inject @Client("/") Rx3StreamingHttpClient streamingClient; // <b class="conum">(3)</b></code></pre>
+</div>
+</div>
+<div class="listingblock multi-language-sample">
+<div class="title">Injecting the RxJava 3 clients</div>
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-python hljs" data-lang="python">from typing import Annotated
+
+from jakarta.inject import Inject
+from micronaut.http.client.annotation import Client
+from micronaut.rxjava3.http.client import Rx3HttpClient, Rx3SseClient, Rx3StreamingHttpClient
+
+http_client: Annotated[Rx3HttpClient, Inject, Client("/")]  # <b class="conum">(1)</b>
+sse_client: Annotated[Rx3SseClient, Inject, Client("/")]  # <b class="conum">(2)</b>
+streaming_client: Annotated[Rx3StreamingHttpClient, Inject, Client("/")]  # <b class="conum">(3)</b></code></pre>
+</div>
+</div>
+<div class="listingblock multi-language-sample">
+<div class="title">Injecting the RxJava 3 clients</div>
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-kotlin hljs" data-lang="kotlin">import io.micronaut.http.client.annotation.Client
+import io.micronaut.rxjava3.http.client.Rx3HttpClient
+import io.micronaut.rxjava3.http.client.Rx3StreamingHttpClient
+import io.micronaut.rxjava3.http.client.Rx3SseClient
+import jakarta.inject.Inject
+
+@Inject @field:Client("/") lateinit var httpClient: Rx3HttpClient // <b class="conum">(1)</b>
+@Inject @field:Client("/") lateinit var sseClient: Rx3SseClient // <b class="conum">(2)</b>
+@Inject @field:Client("/") lateinit var streamingClient: Rx3StreamingHttpClient // <b class="conum">(3)</b></code></pre>
+</div>
+</div>
+<div class="listingblock multi-language-sample">
+<div class="title">Injecting the RxJava 3 clients</div>
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-groovy hljs" data-lang="groovy">import io.micronaut.http.client.annotation.Client
+import io.micronaut.rxjava3.http.client.Rx3HttpClient
+import io.micronaut.rxjava3.http.client.Rx3StreamingHttpClient
+import io.micronaut.rxjava3.http.client.Rx3SseClient
+import jakarta.inject.Inject
+
+@Inject @Client("/") Rx3HttpClient httpClient // <b class="conum">(1)</b>
+@Inject @Client("/") Rx3SseClient sseClient // <b class="conum">(2)</b>
+@Inject @Client("/") Rx3StreamingHttpClient streamingClient // <b class="conum">(3)</b></code></pre>
+</div>
+</div>
+<div class="colist arabic">
+<table>
+<tr>
+<td><i class="conum" data-value="1"></i><b>1</b></td>
+<td>The regular client, <a href="../api/io/micronaut/rxjava3/http/client/Rx3HttpClient.html">Rx3HttpClient</a></td>
+</tr>
+<tr>
+<td><i class="conum" data-value="2"></i><b>2</b></td>
+<td>The server sent events client, <a href="../api/io/micronaut/rxjava3/http/client/Rx3SseClient.html">Rx3SseClient</a></td>
+</tr>
+<tr>
+<td><i class="conum" data-value="3"></i><b>3</b></td>
+<td>The streaming client, <a href="../api/io/micronaut/rxjava3/http/client/Rx3StreamingHttpClient.html">Rx3StreamingHttpClient</a></td>
+</tr>
+</table>
+</div>
+<div class="paragraph">
+<p>The methods of these clients return RxJava 3 types (<code>Flowable</code>, <code>Single</code>, <code>Maybe</code>) instead of Reactive Streams <code>Publisher</code> instances:</p>
+</div>
+<div class="listingblock multi-language-sample">
+<div class="title">Using the RxJava 3 client</div>
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-java hljs" data-lang="java">String greeting = httpClient.retrieve("/hello").blockingFirst();</code></pre>
+</div>
+</div>
+<div class="listingblock multi-language-sample">
+<div class="title">Using the RxJava 3 client</div>
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-python hljs" data-lang="python">greeting = self.http_client.retrieve("/hello").blockingFirst()</code></pre>
+</div>
+</div>
+<div class="listingblock multi-language-sample">
+<div class="title">Using the RxJava 3 client</div>
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-kotlin hljs" data-lang="kotlin">val greeting = httpClient.retrieve("/hello").blockingFirst()</code></pre>
+</div>
+</div>
+<div class="listingblock multi-language-sample">
+<div class="title">Using the RxJava 3 client</div>
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-groovy hljs" data-lang="groovy">String greeting = httpClient.retrieve("/hello").blockingFirst()</code></pre>
 </div>
 </div>
 
