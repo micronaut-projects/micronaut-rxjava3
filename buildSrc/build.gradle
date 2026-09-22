@@ -3,8 +3,11 @@ plugins {
 }
 
 repositories {
+    gradlePluginPortal()
     mavenCentral()
 }
 
 dependencies {
+    // the Kotlin test suite uses the io.micronaut.build.internal.kotlin-kapt convention of micronaut-build
+    implementation(providers.gradleProperty("micronaut-build-version").map { "io.micronaut.build.internal:micronaut-kotlin-build-plugins:${it}" }.get())
 }

@@ -1,8 +1,11 @@
 [versions]
 managed-rxjava3 = "3.1.12"
-micronaut = "5.2.2"
+micronaut = "5.2.3"
+micronaut-serde = "3.1.1"
 
 [libraries]
 # Core
 micronaut-core = { module = 'io.micronaut:micronaut-core-bom', version.ref = 'micronaut' }
 managed-rxjava3 = { module = "io.reactivex.rxjava3:rxjava", version.ref = "managed-rxjava3" }
+
+micronaut-serde = { module = "io.micronaut.serde:micronaut-serde-bom", version.ref = "micronaut-serde" }

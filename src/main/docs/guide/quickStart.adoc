@@ -8,11 +8,12 @@ dependency:io.micronaut.rxjava3:micronaut-rxjava3-http-client[scope="compile"]
 
 To use the RxJava 3 variation of the Micronaut HTTP client inject the api:rxjava3.http.client.Rx3HttpClient[] interface (or one of the other variants). For example:
 
-[source,java]
-----
-import io.micronaut.rxjava3.http.client.*;
+snippet::io.micronaut.rxjava3.docs.Rx3HttpClientTest[tags="imports,clients", indent=0, title="Injecting the RxJava 3 clients"]
 
-@Inject Rx3HttpClient httpClient; // regular client
-@Inject Rx3SseClient sseClient; // server sent events
-@Inject Rx3StreamingHttpClient streamingClient; // streaming
-----
+<1> The regular client, api:rxjava3.http.client.Rx3HttpClient[]
+<2> The server sent events client, api:rxjava3.http.client.Rx3SseClient[]
+<3> The streaming client, api:rxjava3.http.client.Rx3StreamingHttpClient[]
+
+The methods of these clients return RxJava 3 types (`Flowable`, `Single`, `Maybe`) instead of Reactive Streams `Publisher` instances:
+
+snippet::io.micronaut.rxjava3.docs.Rx3HttpClientTest[tags="retrieve", indent=0, title="Using the RxJava 3 client"]
